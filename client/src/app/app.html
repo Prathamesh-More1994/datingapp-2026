@@ -1,3 +1,11 @@
 <app-nav> </app-nav>
-
-<app-home></app-home>
+<!-- added padding as container layout is not present in tailwind v4 -->
+<div
+  [class.mt-24]="router.url !== '/'"
+  [class.px-4]="router.url !== '/'"
+  [class.sm:px-8]="router.url !== '/'"
+  [class.lg:px-16]="router.url !== '/'"
+  [class.mx-auto]="router.url !== '/'"
+>
+  <router-outlet />
+</div>
