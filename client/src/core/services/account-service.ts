@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { LoginCreds, RegisterCreds, User } from '../../types/user';
 import { tap } from 'rxjs';
-import { environment } from '../../environments/environment.development';
+
 import { LikesService } from './likes-service';
 import { PresenceService } from './presence-service';
 import { HubConnectionState } from '@microsoft/signalr';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
