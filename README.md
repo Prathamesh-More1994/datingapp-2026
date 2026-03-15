@@ -6,8 +6,8 @@ The application allows users to create profiles, browse members, like profiles, 
 The project is deployed to Azure App Service with CI/CD using GitHub Actions.<br>
 
 ## Screenshot / Demo
-![Members](https://github.com/Prathamesh-More1994/datingapp-2026/blob/166515d7157bc957ed540a012ec0d2d78f9ab842/Screenshot%201.png)
-![Message](https://github.com/Prathamesh-More1994/datingapp-2026/blob/166515d7157bc957ed540a012ec0d2d78f9ab842/Screenshot%202.png)
+![Members](https://github.com/Prathamesh-More1994/datingapp-2026/blob/main/Screenshot%201.png)
+![Message](https://github.com/Prathamesh-More1994/datingapp-2026/blob/main/Screenshot%202.png)
 
 ## __Tech Stack__
 **Backend**
@@ -61,26 +61,61 @@ The project is deployed to Azure App Service with CI/CD using GitHub Actions.<br
 
 **Running the Project Locally**
 ## 1. Clone the repository
-git clone https://github.com/Prathamesh-More1994/datingapp-2026.git <br>
-cd datingapp-2026
 
-## 2. Run Backend (API)
-cd API <br>
-dotnet restore <br>
-dotnet run <br>
+```bash
+git clone https://github.com/Prathamesh-More1994/datingapp-2026.git
+cd datingapp-2026
+```
+
+## 2. Start the Database (Docker)
+This project uses SQL Server running in Docker for the database.
+
+Make sure Docker Desktop is running, then start the SQL Server container:
+```bash
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password@1" 
+-p 1433:1433 --name datingapp-sql 
+-d mcr.microsoft.com/mssql/server:2022-latest
+```
+
+Verify the container is running:
+
+```bash
+docker ps
+```
+
+## 3.Apply Database Migrations
+
+Navigate to the API folder and update the database.
+```bash
+cd API 
+dotnet ef database update 
+```
+
+This will create the required tables.
+
+## 4. Run Backend (API)
+
+```bash
+cd API 
+dotnet restore 
+dotnet run 
+```
 
 The API will start on: <br>
 https://localhost:5001
 
-## 3. Run Frontend (Angular)
-cd client <br>
-npm install <br>
-ng serve <br>
+## 5. Run Frontend (Angular)
+
+```bash
+cd client
+npm install 
+ng serve 
+```
 
 Open in browser: <br>
 http://localhost:4200
 
-**Deployment**
+## Deployment
 
 The application is deployed using GitHub Actions CI/CD pipeline. <br>
 Deployment flow: <br>
